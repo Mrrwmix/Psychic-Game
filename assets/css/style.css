@@ -2,4 +2,19 @@ body {
     background: lightseagreen;
     color: rgba(32, 32, 32, 0.973);
     font-family: Verdana, sans-serif;
+    text-align: center;
+    font-size: 1rem;
+}
+
+h1 {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 4rem;
+}
+
+#winnies {
+    color: rgb(104, 59, 1);
+}
+
+#losses {
+    color: darkred;
 }

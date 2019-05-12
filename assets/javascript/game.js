@@ -1,9 +1,5 @@
 // global variables
 const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-var winText = document.getElementById("winnies").textContent;
-var lossText = document.getElementById("losses").textContent;
-var guessesLeftText = document.getElementById("remaining").textContent;
-var guessesText = document.getElementById("guesses").textContent;
 var wins = 0;
 var losing = 0;
 var guessesLeft = 10;
@@ -16,25 +12,34 @@ function randomLetter() {
     return alphabet[letterIndex];
 }
 
-// onkeyup logic
-function psychicGame(event){
-    if (guessesLeft == 10 || guessesLeft == 0){
-    var theLetter = randomLetter();
-    }
-    if (lastGuess == theLetter){
-        wins++;
-    }
-    else if (guessesLeft <= 0){
+// generating the first lettter, onkeyup function, and updating text
+var theLetter = randomLetter();
+
+document.onkeyup = function(event){
+    var theGuess = event.key;
+    if (guessesLeft < 1){
         losing++;
-    } 
-    else {
-        lastGuess.push(document.onkeyup);
+        document.getElementById("result").innerText = "You lost! The letter was " + theLetter;
+        theLetter = randomLetter();
+        document.getElementById("losses").textContent = losing;
+        guessesLeft = 10;
+        lastGuess = [];
     }
+    else if (theGuess == theLetter){
+        wins++;
+        document.getElementById("result").innerText = "You won! The letter was " + theLetter;
+        theLetter = randomLetter();
+        document.getElementById("winnies").textContent = wins;
+        guessesLeft = 10;
+        lastGuess = [];
+        document.getElementById("remaining").textContent = "";
+    }
+    else {
+        lastGuess.push(theGuess);
+        document.getElementById("guesses").textContent = lastGuess;
+        guessesLeft--;
+    }
+    document.getElementById("remaining").textContent = guessesLeft;
 }
 
-//dynamically updating text
 
-winText.innerText = wins;
-lossText = losing;
-guessesLeftText = guessesLeft;
-guessesText = lastGuess;
