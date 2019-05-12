@@ -2,7 +2,7 @@
 const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 var wins = 0;
 var losing = 0;
-var guessesLeft = 10;
+var guessesLeft = 9;
 var lastGuess = [];
 
 // random letter function
@@ -17,12 +17,12 @@ var theLetter = randomLetter();
 
 document.onkeyup = function(event){
     var theGuess = event.key;
-    if (guessesLeft < 1){
+    if (guessesLeft < 2){
         losing++;
         document.getElementById("result").innerText = "You lost! The letter was " + theLetter;
         theLetter = randomLetter();
         document.getElementById("losses").textContent = losing;
-        guessesLeft = 10;
+        guessesLeft = 9;
         lastGuess = [];
     }
     else if (theGuess == theLetter){
@@ -30,7 +30,7 @@ document.onkeyup = function(event){
         document.getElementById("result").innerText = "You won! The letter was " + theLetter;
         theLetter = randomLetter();
         document.getElementById("winnies").textContent = wins;
-        guessesLeft = 10;
+        guessesLeft = 9;
         lastGuess = [];
         document.getElementById("remaining").textContent = "";
     }
